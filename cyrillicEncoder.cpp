@@ -1,5 +1,6 @@
 #include "cyrillicEncoder.h"
 #include <iostream>
+#include <cwctype>
 using namespace std;
 
 CyrillicEncoder::CyrillicEncoder(char* seq) {
@@ -20,23 +21,18 @@ string CyrillicEncoder::convertUnicodeToUtf8(int unicode) {
     return s;
 };
 
+
 void CyrillicEncoder::encode() {
-    for(int i= 48; i < 58; i++){
-        int cyrillicUnicode = convertAlphaNumToCyrillic(i);
-        cout << "i=" << i <<" (" << char(i) << ") ascii=" << cyrillicUnicode << " cyrillic=" << convertUnicodeToUtf8(cyrillicUnicode) << "\n";
+    int seqLen = strlen(sequence);
+    string cyrillicStr;
+    for(int i = 0; i < seqLen; i ++) {
+        int asciiValue = sequence[i];
+        if(!iswalnum(asciiValue)){
+            cout << "NON ALPHA NUMERIC CHAR, " << char(asciiValue) << ", was used. Only use [0-9A-Za-z].\n";
+            exit(1);
+        }
+        int cyrillicUnicode = convertAlphaNumToCyrillic(asciiValue);
+        cyrillicStr += convertUnicodeToUtf8(cyrillicUnicode);
     }
-    int A = 'A';
-    int Z = 'Z';
-        for(int i= A; i < Z+1; i++){
-        int cyrillicUnicode = convertAlphaNumToCyrillic(i);
-        cout << "i=" << i <<" (" << char(i) << ") ascii=" << cyrillicUnicode << " cyrillic=" << convertUnicodeToUtf8(cyrillicUnicode) << "\n";
-    }
-
-    int a = 'a';
-    int z = 'z';
-        for(int i= a; i < z+1; i++){
-        int cyrillicUnicode = convertAlphaNumToCyrillic(i);
-        cout << "i=" << i <<" (" << char(i) << ") ascii=" << cyrillicUnicode << " cyrillic=" << convertUnicodeToUtf8(cyrillicUnicode) << "\n";
-    }
-
+    cout << cyrillicStr << "\n";
 };
