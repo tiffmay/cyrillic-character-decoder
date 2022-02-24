@@ -3,11 +3,14 @@ CFLAGS = -Wall -g
 
 all: main
 
-main: main.o
-	${CC} ${CFLAGS} -o main main.o
+main: main.o cyrillicEncoder.o
+	${CC} ${CFLAGS} -o encoder main.o cyrillicEncoder.o
 
-main.o: main.cpp
-	$(CC) $(CFLAGS) -c main.cpp
+main.o: main.cpp 
+	$(CC) $(CFLAGS) -c main.cpp 
+
+cyrillicEncoder.o: cyrillicEncoder.cpp 
+	$(CC) $(CFLAGS) -c cyrillicEncoder.cpp
 
 clean:
-	rm *.o main
+	rm *.o encoder
