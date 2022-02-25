@@ -4,13 +4,9 @@
 #include <cwctype>
 using namespace std;
 
-CyrillicEncoder::CyrillicEncoder(char* seq) {
-    sequence = seq;
-};
-
 int CyrillicEncoder::convertAlphaNumToCyrillic(int asciiValue) {
     // cyrillic range = 1024 (0x400) to 1145 (0x0479)
-    return asciiValue + 976;
+    return asciiValue + 977;
 };
 
 string CyrillicEncoder::convertUnicodeToUtf8(int unicode) {
@@ -22,7 +18,7 @@ string CyrillicEncoder::convertUnicodeToUtf8(int unicode) {
     return s;
 };
 
-void CyrillicEncoder::encode() {
+void CyrillicEncoder::encode(char* sequence) {
     int seqLen = strlen(sequence);
     string cyrillicStr;
     for(int i = 0; i < seqLen; i ++) {
@@ -44,6 +40,10 @@ void CyrillicEncoder::encode() {
 
 
     }
-    cout << cyrillicStr << "\n";
-    table.printTable();
+    cout << cyrillicStr << " ";
 };
+
+void CyrillicEncoder::printDecodeTable(){
+    cout << "\n\n";
+    table.printTable();
+}

@@ -8,12 +8,13 @@ int main(int argc, char *argv[]) {
         cout << "No alphanumeric sequence passed. Please pass one sequence. Example run: \"main asdf45t\"\n";
         return(1);
     }
-    if (argc > 2) {
-        cout << "More than one alphanumeric sequence passed. Please pass only one sequence. Example run: \"main asdf45t\"\n";
-        return(1);
-    }
+    cout << "Sequence: ";
+    CyrillicEncoder encoder;
+    
+    for (int i = 1; i < argc; i++){
+        encoder.encode(argv[i]);
+    }   
+    encoder.printDecodeTable();
 
-    CyrillicEncoder encoder(argv[1]);
-    encoder.encode();
     return(0);
 }

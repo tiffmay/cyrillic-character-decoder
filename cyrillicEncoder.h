@@ -8,13 +8,12 @@ using namespace std;
 
 class CyrillicEncoder
 {
-    char* sequence;
     HashTable table;
 public:
-    CyrillicEncoder(char* seq);
     int convertAlphaNumToCyrillic(int asciiValue);
     string convertUnicodeToUtf8(int unicode); 
-    void encode();
+    void encode(char* sequence);
+    void printDecodeTable();
 };
 
 #endif
