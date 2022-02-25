@@ -11,6 +11,8 @@ class CyrillicEncoder
     HashTable table;
     int convertAlphaNumToCyrillic(int asciiValue);
     string convertUnicodeToUtf8(int unicode); 
+    string getCyrillic(int alphanum);
+    void updateTable(int alphanum, string cyrillic);
 public:
     void encode(char* sequence);
     void printDecodeTable();

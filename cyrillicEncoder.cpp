@@ -18,6 +18,23 @@ string CyrillicEncoder::convertUnicodeToUtf8(int unicode) {
     return s;
 }
 
+string CyrillicEncoder::getCyrillic(int alphanum) {
+    string cyrillic = table.getCyrillic(alphanum);
+    if (cyrillic == "") {
+        int cyrillicUnicode = convertAlphaNumToCyrillic(alphanum);
+        cyrillic = convertUnicodeToUtf8(cyrillicUnicode);
+        updateTable(alphanum, cyrillic);
+    }
+    return cyrillic;
+}
+
+void CyrillicEncoder::updateTable(int alphanum, string cyrillic) {
+    HashItem adding;
+    adding.alphanum = alphanum;
+    adding.cyrillic = cyrillic;
+    table.insertItem(adding);
+}
+
 void CyrillicEncoder::encode(char* sequence) {
     int seqLen = strlen(sequence);
     string cyrillicStr;
@@ -27,16 +44,7 @@ void CyrillicEncoder::encode(char* sequence) {
             cout << "[ERROR] NON-ALPHA-NUMERIC CHAR, " << char(alphanum) << ", was used. Only use [0-9A-Za-z].\n";
             exit(1);
         }
-        string cyrillic = table.getCyrillic(alphanum);
-        if (cyrillic == "") {
-            int cyrillicUnicode = convertAlphaNumToCyrillic(alphanum);
-            cyrillic = convertUnicodeToUtf8(cyrillicUnicode);
-            HashItem adding;
-            adding.alphanum = alphanum;
-            adding.cyrillic = cyrillic;
-            table.insertItem(adding);
-        }
-        cyrillicStr += cyrillic;
+        cyrillicStr += getCyrillic(alphanum);
     }
     cout << cyrillicStr << " ";
 }
