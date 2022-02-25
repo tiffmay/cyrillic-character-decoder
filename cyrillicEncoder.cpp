@@ -24,7 +24,7 @@ void CyrillicEncoder::encode(char* sequence) {
     for(int i = 0; i < seqLen; i ++) {
         int asciiValue = sequence[i];
         if (!iswalnum(asciiValue)){
-            cout << "NON ALPHA NUMERIC CHAR, " << char(asciiValue) << ", was used. Only use [0-9A-Za-z].\n";
+            cout << "[ERROR] NON-ALPHA-NUMERIC CHAR, " << char(asciiValue) << ", was used. Only use [0-9A-Za-z].\n";
             exit(1);
         }
         string cyrillic = table.getCyrillic(asciiValue);
