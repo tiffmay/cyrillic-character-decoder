@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     cout << "Sequence: ";
     CyrillicEncoder encoder;
     
-    for (int i = 1; i < argc; i++){
+    for (int i = 1; i < argc; i++) {
         encoder.encode(argv[i]);
     }   
     encoder.printDecodeTable();

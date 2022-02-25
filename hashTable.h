@@ -16,12 +16,11 @@ class HashTable
 {
     int BUCKET = 16; //62 alphanumberic characters
     list<HashItem> *table;
-
+    int hashFunction(int item);
 public:
     HashTable();
     void insertItem(HashItem item);
     string getCyrillic(int alphanum);
-    int hashFunction(int item);
     void printTable();
 };
 

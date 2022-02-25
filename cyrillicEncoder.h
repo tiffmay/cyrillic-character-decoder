@@ -9,9 +9,9 @@ using namespace std;
 class CyrillicEncoder
 {
     HashTable table;
-public:
     int convertAlphaNumToCyrillic(int asciiValue);
     string convertUnicodeToUtf8(int unicode); 
+public:
     void encode(char* sequence);
     void printDecodeTable();
 };
