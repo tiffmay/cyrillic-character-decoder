@@ -1,4 +1,5 @@
 using namespace std;
+#include "hashTable.h"
 #include <iostream>
 #include <cstring>
 
@@ -8,7 +9,7 @@ using namespace std;
 class CyrillicEncoder
 {
     char* sequence;
-
+    HashTable table;
 public:
     CyrillicEncoder(char* seq);
     int convertAlphaNumToCyrillic(int asciiValue);
